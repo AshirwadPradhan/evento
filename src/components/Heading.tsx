@@ -1,5 +1,5 @@
+import { cn } from "@/lib/utils";
 import React from "react";
-import { twMerge } from "tailwind-merge";
 
 function Heading({
   children,
@@ -10,10 +10,7 @@ function Heading({
 }) {
   return (
     <h1
-      className={twMerge(
-        "text-3xl lg:text-6xl font-bold tracking-tight",
-        className
-      )}
+      className={cn("text-3xl lg:text-6xl font-bold tracking-tight", className)}
     >
       {children}
     </h1>
