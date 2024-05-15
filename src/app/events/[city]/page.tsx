@@ -13,9 +13,9 @@ async function EventsPage({ params }: { params: { city: string } }) {
   return (
     <main className="flex flex-col items-center py-24 px-[20px] min-h-[110vh]">
       {params.city === "all" ? (
-        <Heading>All Events</Heading>
+        <Heading className="mb-28">All Events</Heading>
       ) : (
-        <Heading>
+        <Heading className="mb-28">
           Events in {city.charAt(0).toUpperCase() + city.slice(1)}
         </Heading>
       )}
