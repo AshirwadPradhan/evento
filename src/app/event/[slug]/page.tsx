@@ -1,6 +1,6 @@
 import Heading from "@/components/Heading";
 import { EventoEvent } from "@/lib/types";
-import { getEvents } from "@/lib/utils";
+import { getEvent } from "@/lib/utils";
 import { Metadata } from "next";
 import Image from "next/image";
 import React from "react";
@@ -11,7 +11,7 @@ export async function generateMetadata({
   params: { slug: string };
 }): Promise<Metadata> {
   const slug = params.slug;
-  const event: EventoEvent = await getEvents(slug);
+  const event: EventoEvent = await getEvent(slug);
   return {
     title: `${event.name} - Evento`,
   };
@@ -20,7 +20,7 @@ export async function generateMetadata({
 async function EventPage({ params }: { params: { slug: string } }) {
   const slug = params.slug;
 
-  const event: EventoEvent = await getEvents(slug);
+  const event: EventoEvent = await getEvent(slug);
 
   return (
     <main>
