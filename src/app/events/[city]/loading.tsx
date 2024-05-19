@@ -1,11 +1,11 @@
-import Skeleton from "@/components/skeleton";
+import SkeletonCard from "@/components/skeleton-card";
 
 function loading() {
   return (
-    <div className="flex flex-col items-center gap-y-4 pt-28">
-      <Skeleton className="h-4 w-[550px]" />
-      <Skeleton className="h-4 w-[400px]" />
-      <Skeleton className="h-4 w-[430px]" />
+    <div className="flex flex-wrap justify-center max-w-[1100px] mx-auto my-20 px-[20px]py-24 gap-20">
+      {Array.from({ length: 12 }).map((_, i) => (
+        <SkeletonCard key={i} />
+      ))}
     </div>
   );
 }
