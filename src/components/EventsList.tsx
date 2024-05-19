@@ -4,7 +4,13 @@ import EventCard from "./EventCard";
 
 async function EventsList({ city }: { city: string }) {
   const resp = await fetch(
-    "https://bytegrad.com/course-assets/projects/evento/api/events?city=" + city
+    "https://bytegrad.com/course-assets/projects/evento/api/events?city=" +
+      city,
+    {
+      next: {
+        revalidate: 300,
+      },
+    }
   );
   const events: EventoEvent[] = await resp.json();
   return (
