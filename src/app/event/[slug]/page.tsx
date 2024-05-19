@@ -1,7 +1,23 @@
 import Heading from "@/components/Heading";
 import { EventoEvent } from "@/lib/types";
+import { Metadata } from "next";
 import Image from "next/image";
 import React from "react";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const slug = params.slug;
+  const resp = await fetch(
+    "https://bytegrad.com/course-assets/projects/evento/api/events/" + slug
+  );
+  const event: EventoEvent = await resp.json();
+  return {
+    title: `${event.name} - Evento`,
+  };
+}
 
 async function EventPage({ params }: { params: { slug: string } }) {
   const slug = params.slug;

@@ -2,6 +2,21 @@ import EventsList from "@/components/EventsList";
 import Heading from "@/components/Heading";
 import React, { Suspense } from "react";
 import Loading from "./loading";
+import { Metadata } from "next";
+
+export function generateMetadata({
+params,
+}: {
+  params: { city: string };
+}): Metadata {
+  const city = params.city;
+  return {
+    title:
+      city === "all"
+        ? "All Events"
+        : `Events in ${city.charAt(0).toUpperCase() + city.slice(1)}`,
+  };
+}
 
 async function EventsPage({ params }: { params: { city: string } }) {
   const city = params.city;
