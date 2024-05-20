@@ -22,6 +22,9 @@ export async function getEventList(params: string) {
           ? undefined
           : params.charAt(0).toUpperCase() + params.slice(1),
     },
+    orderBy: {
+      date: "asc",
+    },
   });
   return eventList;
 }
