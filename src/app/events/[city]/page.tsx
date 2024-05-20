@@ -40,7 +40,7 @@ async function EventsPage({
         </Heading>
       )}
 
-      <Suspense fallback={<Loading />}>
+      <Suspense key={city + page} fallback={<Loading />}>
         <EventsList city={city} page={+page} />
       </Suspense>
     </main>
