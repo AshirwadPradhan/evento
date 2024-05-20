@@ -17,6 +17,17 @@ export async function generateMetadata({
   };
 }
 
+export async function generateStaticParams() {
+  return [
+    {
+      slug: "comedy-extravaganza",
+    },
+    {
+      slug: "dj-practice-session",
+    },
+  ];
+}
+
 async function EventPage({ params }: { params: { slug: string } }) {
   const slug = params.slug;
 
