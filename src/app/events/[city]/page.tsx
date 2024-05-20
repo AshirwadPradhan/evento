@@ -3,6 +3,7 @@ import Heading from "@/components/Heading";
 import React, { Suspense } from "react";
 import Loading from "./loading";
 import { Metadata } from "next";
+import { z } from "zod";
 
 export function generateMetadata({
   params,
@@ -18,6 +19,8 @@ export function generateMetadata({
   };
 }
 
+const pageNumberSchema = z.coerce.number().int().positive().optional();
+
 async function EventsPage({
   params,
   searchParams,
@@ -28,7 +31,10 @@ async function EventsPage({
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
   const city = params.city;
-  const page = searchParams.page ?? 1;
+  const page = pageNumberSchema.safeParse(searchParams.page);
+  if (!page.success) {
+    throw new Error("Invalid page number");
+  }
 
   return (
     <main className="flex flex-col items-center py-24 px-[20px] min-h-[110vh]">
@@ -40,8 +46,8 @@ async function EventsPage({
         </Heading>
       )}
 
-      <Suspense key={city + page} fallback={<Loading />}>
-        <EventsList city={city} page={+page} />
+      <Suspense key={city + page.data} fallback={<Loading />}>
+        <EventsList city={city} page={page.data} />
       </Suspense>
     </main>
   );

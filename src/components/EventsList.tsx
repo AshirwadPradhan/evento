@@ -5,7 +5,7 @@ import { getEventList } from "@/lib/utils";
 import PaginationControls from "./pagination-controls";
 import next from "next";
 
-async function EventsList({ city, page }: { city: string; page: number }) {
+async function EventsList({ city, page = 1 }: { city: string; page?: number }) {
   const { eventList, totalEvents } = await getEventList(city, page);
 
   const prevPath = page > 1 ? `/events/${city}?page=${page - 1}` : "";
