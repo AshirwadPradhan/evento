@@ -18,7 +18,7 @@ export async function getEvent(params: string) {
   return event;
 }
 
-export async function getEventList(params: string) {
+export async function getEventList(params: string, page = 1) {
   const eventList = await prisma.eventoEvent.findMany({
     where: {
       city:
@@ -29,6 +29,8 @@ export async function getEventList(params: string) {
     orderBy: {
       date: "asc",
     },
+    take: 6,
+    skip: (page - 1) * 6,
   });
 
   if (!eventList || eventList.length === 0) {

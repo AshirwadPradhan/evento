@@ -5,7 +5,7 @@ import Loading from "./loading";
 import { Metadata } from "next";
 
 export function generateMetadata({
-params,
+  params,
 }: {
   params: { city: string };
 }): Metadata {
@@ -18,8 +18,17 @@ params,
   };
 }
 
-async function EventsPage({ params }: { params: { city: string } }) {
+async function EventsPage({
+  params,
+  searchParams,
+}: {
+  params: {
+    city: string;
+  };
+  searchParams: { [key: string]: string | string[] | undefined };
+}) {
   const city = params.city;
+  const page = searchParams.page ?? 1;
 
   return (
     <main className="flex flex-col items-center py-24 px-[20px] min-h-[110vh]">
@@ -32,7 +41,7 @@ async function EventsPage({ params }: { params: { city: string } }) {
       )}
 
       <Suspense fallback={<Loading />}>
-        <EventsList city={city} />
+        <EventsList city={city} page={+page} />
       </Suspense>
     </main>
   );
