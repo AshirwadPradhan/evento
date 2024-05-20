@@ -1,6 +1,6 @@
 import Heading from "@/components/Heading";
 import { EventoEvent } from "@prisma/client";
-import { getEvent } from "@/lib/utils";
+import { getEvent } from "@/lib/server-utils";
 import { Metadata } from "next";
 import Image from "next/image";
 import React from "react";
